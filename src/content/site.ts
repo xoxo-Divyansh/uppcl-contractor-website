@@ -102,12 +102,9 @@ export const siteInfo = {
   formFields: [
     "Name",
     "Phone",
-    "Email",
-    "Company or department",
     "Work type",
-    "Location",
+    "District",
     "Message",
-    "Attachment upload",
   ],
 };
 
@@ -121,6 +118,7 @@ export const siteImages = {
 export const heroTopUtilityItems = [
   "GST Registered",
   "MSME Registered",
+  "Experienced Team",
   "Multi-District Operations",
 ];
 
@@ -143,49 +141,49 @@ export const heroQuickActions = [
 
 export const heroProofPoints = [
   {
-    value: "Utility",
-    label: "Sector focus",
+    value: "GST",
+    label: "Registered business",
     description:
-      "Aligned for power distribution, infrastructure, and field operations support work.",
+      "Professional business positioning with compliance-oriented identity for procurement-facing conversations.",
   },
   {
-    value: "Timed",
-    label: "Execution approach",
+    value: "Team",
+    label: "Experienced crews",
     description:
-      "Built to communicate readiness, discipline, and timely delivery without inflated claims.",
+      "Suitable for electricians, supervisors, helpers, and field coordination support across live work packages.",
   },
   {
-    value: "Ready",
-    label: "Profile support",
+    value: "UP",
+    label: "Operational reach",
     description:
-      "Prepared for company profile requests, partner conversations, and document-based enquiries.",
+      "Structured to support multi-district electrical work, maintenance response, and project mobilization in Uttar Pradesh.",
   },
 ];
 
 export const companyHighlights = [
   {
-    value: "7+",
-    label: "Core site sections",
+    value: "GST",
+    label: "Registered business",
     description:
-      "Covers business profile, services, projects, certificates, gallery, tender capabilities, and contact.",
+      "Clear business identity for procurement teams, partners, and company-profile requests.",
   },
   {
-    value: "5",
-    label: "Primary service groups",
+    value: "MSME",
+    label: "Compliance support",
     description:
-      "Built around contracting, maintenance, supply, tender support, and manpower deployment.",
+      "Useful for business verification, vendor onboarding, and tender-related conversations.",
   },
   {
-    value: "6",
-    label: "Project placeholders",
+    value: "Field",
+    label: "Experienced team",
     description:
-      "Ready to swap with verified work cards once the client shares real completed or ongoing work details.",
+      "Positioned for execution discipline across manpower, maintenance, installation, and support work.",
   },
   {
-    value: "MVP",
-    label: "Fast launch scope",
+    value: "UP",
+    label: "Multi-district operations",
     description:
-      "Enough to pitch the client, collect content, and publish a polished first version without backend complexity.",
+      "Prepared for district-level coordination and broader utility-sector project coverage across Uttar Pradesh.",
   },
 ] satisfies SiteHighlight[];
 
@@ -467,7 +465,7 @@ export const galleryItems: GalleryItem[] = [
   },
 ];
 
-  export const contactReasons = [
+export const contactReasons = [
   "Electrical work enquiry",
   "Tender partnership discussion",
   "Material supply proposal",

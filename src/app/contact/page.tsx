@@ -12,8 +12,8 @@ export default function ContactPage() {
     <>
       <PageSection variant="hero">
         <SectionHeading
-          title="Contact and enquiry management"
-          description="This page is written to convert serious enquiries into calls, WhatsApp discussions, and company-profile requests without making the site feel crowded."
+          title="Call, WhatsApp, or send a project requirement"
+          description="The contact flow is now designed to convert real enquiries into faster business conversations around manpower, maintenance, material supply, and tender-related execution support."
         />
       </PageSection>
 
