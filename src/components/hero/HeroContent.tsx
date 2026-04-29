@@ -24,9 +24,12 @@ export default function HeroContent() {
         <Link className="button-outline-light" href="/contact#request-profile">
           Request Company Profile
         </Link>
-        <Link className="button-outline-light" href="/contact">
-          Contact Team
-        </Link>
+        <a className="button-outline-light" href={siteInfo.phoneHref}>
+          Call Now
+        </a>
+        <a className="button-outline-light" href={siteInfo.whatsAppHref}>
+          WhatsApp Us
+        </a>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">

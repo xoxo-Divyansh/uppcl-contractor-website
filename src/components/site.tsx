@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import LeadForm from "@/components/contact/LeadForm";
 import TopUtilityBar from "@/components/hero/TopUtilityBar";
 import {
   ArrowRightIcon,
@@ -154,7 +155,7 @@ function NavLink({ item }: { item: NavigationItem }) {
 function SiteFooter() {
   return (
     <footer className="border-t border-white/60 bg-[rgba(248,250,252,0.88)]">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1.15fr_0.85fr_0.9fr] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 pb-28 sm:px-6 md:pb-10 lg:grid-cols-[1.15fr_0.85fr_0.9fr] lg:px-8">
         <div className="space-y-4">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[var(--primary)]">
             {siteInfo.shortLabel}
@@ -206,15 +207,31 @@ function SiteFooter() {
   );
 }
 
-function FloatingWhatsApp() {
+function MobileContactBar() {
   return (
-    <a
-      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-[#0f7b5d] px-4 py-3 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(15,123,93,0.35)] transition hover:-translate-y-0.5 lg:hidden"
-      href={siteInfo.whatsAppHref}
-    >
-      <PhoneIcon className="h-4 w-4" />
-      Discuss Project
-    </a>
+    <div className="fixed inset-x-4 bottom-4 z-40 grid grid-cols-3 gap-3 rounded-[1.45rem] border border-[var(--border)] bg-[rgba(250,252,252,0.96)] p-3 shadow-[0_18px_45px_rgba(10,18,28,0.16)] backdrop-blur-xl md:hidden">
+      <a
+        className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-3 py-3 text-sm font-semibold text-white"
+        href={siteInfo.phoneHref}
+      >
+        <PhoneIcon className="h-4 w-4" />
+        Call
+      </a>
+      <a
+        className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--trust)] px-3 py-3 text-sm font-semibold text-white"
+        href={siteInfo.whatsAppHref}
+      >
+        <UsersIcon className="h-4 w-4" />
+        WhatsApp
+      </a>
+      <Link
+        className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border-strong)] bg-white px-3 py-3 text-sm font-semibold text-[var(--heading)]"
+        href="/contact#request-profile"
+      >
+        <MailIcon className="h-4 w-4" />
+        Contact
+      </Link>
+    </div>
   );
 }
 
@@ -223,9 +240,9 @@ export function SiteFrame({ children }: { children: ReactNode }) {
     <div className="page-shell">
       <TopUtilityBar />
       <SiteHeader />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pb-24 md:pb-0">{children}</main>
       <SiteFooter />
-      <FloatingWhatsApp />
+      <MobileContactBar />
     </div>
   );
 }
@@ -296,12 +313,17 @@ export function ProjectCard({ project }: { project: ProjectItem }) {
             {project.duration}
           </span>
         </div>
-        <p className="text-[0.98rem] leading-7 text-[var(--muted)]">
-          {project.scope}
-        </p>
+        <div className="rounded-2xl border border-[var(--border)] bg-white/76 px-4 py-3">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent-strong)]">
+            Scope of work
+          </p>
+          <p className="mt-2 text-[0.98rem] leading-7 text-[var(--muted)]">
+            {project.scope}
+          </p>
+        </div>
         <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-alt)] px-4 py-4">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent-strong)]">
-            Presentation note
+            Execution proof note
           </p>
           <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
             {project.note}
@@ -356,72 +378,78 @@ export function CallToActionPanel({
 
 export function ContactPanel() {
   return (
-    <div className="section-card p-7">
-      <h2 className="text-2xl font-semibold tracking-tight text-[var(--heading)]">
-        Business contact setup
-      </h2>
-      <p className="mt-3 text-[15px] leading-7 text-[var(--muted)]">
-        Replace the placeholder phone, email, address, and maps link with the
-        client&apos;s verified business details before going live. The layout is
-        already prepared for quick final data entry.
-      </p>
+    <div className="grid gap-6">
+      <LeadForm />
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <a className="contact-card" href={siteInfo.phoneHref}>
-          <PhoneIcon className="h-5 w-5 text-[var(--primary)]" />
-          <div>
-            <p className="text-sm font-semibold text-[var(--heading)]">Call</p>
-            <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
-              {siteInfo.phone}
-            </p>
-          </div>
-        </a>
-        <a className="contact-card" href={siteInfo.whatsAppHref}>
-          <UsersIcon className="h-5 w-5 text-[var(--primary)]" />
-          <div>
-            <p className="text-sm font-semibold text-[var(--heading)]">
-              WhatsApp
-            </p>
-            <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
-              Prefilled project discussion message ready
-            </p>
-          </div>
-        </a>
-        <a className="contact-card" href={`mailto:${siteInfo.email}`}>
-          <MailIcon className="h-5 w-5 text-[var(--primary)]" />
-          <div>
-            <p className="text-sm font-semibold text-[var(--heading)]">Email</p>
-            <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
-              {siteInfo.email}
-            </p>
-          </div>
-        </a>
-        <div className="contact-card">
-          <MapPinIcon className="h-5 w-5 text-[var(--primary)]" />
-          <div>
-            <p className="text-sm font-semibold text-[var(--heading)]">
-              Office coverage
-            </p>
-            <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
-              {siteInfo.location}
-            </p>
+      <div className="section-card p-7">
+        <h2 className="text-2xl font-semibold tracking-tight text-[var(--heading)]">
+          Contact readiness checklist
+        </h2>
+        <p className="mt-3 text-[15px] leading-7 text-[var(--muted)]">
+          Replace the placeholder phone, email, address, and maps link with the
+          client&apos;s verified business details before going live. The layout is
+          already prepared for quick final data entry.
+        </p>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <a className="contact-card" href={siteInfo.phoneHref}>
+            <PhoneIcon className="h-5 w-5 text-[var(--primary)]" />
+            <div>
+              <p className="text-sm font-semibold text-[var(--heading)]">Call</p>
+              <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                {siteInfo.phone}
+              </p>
+            </div>
+          </a>
+          <a className="contact-card" href={siteInfo.whatsAppHref}>
+            <UsersIcon className="h-5 w-5 text-[var(--primary)]" />
+            <div>
+              <p className="text-sm font-semibold text-[var(--heading)]">
+                WhatsApp
+              </p>
+              <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                Prefilled project discussion message ready
+              </p>
+            </div>
+          </a>
+          <a className="contact-card" href={`mailto:${siteInfo.email}`}>
+            <MailIcon className="h-5 w-5 text-[var(--primary)]" />
+            <div>
+              <p className="text-sm font-semibold text-[var(--heading)]">
+                Email
+              </p>
+              <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                {siteInfo.email}
+              </p>
+            </div>
+          </a>
+          <div className="contact-card">
+            <MapPinIcon className="h-5 w-5 text-[var(--primary)]" />
+            <div>
+              <p className="text-sm font-semibold text-[var(--heading)]">
+                Office coverage
+              </p>
+              <p className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                {siteInfo.location}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-6 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-alt)] p-5">
-        <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--primary)]">
-          Recommended form fields
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          {siteInfo.formFields.map((field) => (
-            <div
-              key={field}
-              className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3 text-sm text-[var(--muted)]"
-            >
-              {field}
-            </div>
-          ))}
+        <div className="mt-6 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-alt)] p-5">
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--primary)]">
+            Recommended form fields
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {siteInfo.formFields.map((field) => (
+              <div
+                key={field}
+                className="rounded-2xl border border-[var(--border)] bg-white px-4 py-3 text-sm text-[var(--muted)]"
+              >
+                {field}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
