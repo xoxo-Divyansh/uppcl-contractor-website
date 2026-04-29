@@ -5,7 +5,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 ## Project context
 - This is a single Next.js 16 App Router site (TypeScript + Tailwind CSS v4) for a contractor business profile and lead capture experience.
 - The app is currently frontend-only; there is no backend API layer in this repo.
-- Much of the business content is intentionally placeholder/demo data and should be replaced with verified client data before production launch.
+- Business content is currently placeholder/demo data and should be replaced with verified client data before production launch.
 
 ## Common commands
 Run from the repository root.
@@ -15,16 +15,28 @@ Run from the repository root.
 - Create production build: `npm run build`
 - Start production server locally: `npm run start`
 - Lint project: `npm run lint`
+- Type-check without emitting: `npx tsc --noEmit`
 
 ### Targeted validation commands
 - Lint a specific file: `npx eslint src/app/page.tsx`
-- Type-check without emitting: `npx tsc --noEmit`
 
 ### Tests
-- There is currently no test runner or test script configured in `package.json`, and no test files in the repository.
-- If tests are introduced, add explicit npm scripts and update this file with:
-  - full-suite command
-  - single-test command (file or pattern-based)
+- No automated test suite is configured in this repository right now.
+- If tests are added, define npm scripts and update this file with both full-suite and single-test commands.
+
+## PR readiness checks
+- Before opening or merging a PR, run:
+  - `npm run lint`
+  - `npm run build`
+- This matches the validation checklist in `.github/pull_request_template.md`.
+
+## Source-of-truth map
+- Global shell/navigation/footer/layout wrappers: `src/components/site.tsx`
+- Route composition and page-level metadata: `src/app/**/page.tsx`
+- Shared business copy/data/links/navigation arrays: `src/content/site.ts`
+- Homepage hero composition and visuals: `src/components/hero/*`
+- Contact form behavior (WhatsApp-prefilled flow): `src/components/contact/LeadForm.tsx`
+- Global tokens and reusable visual utility classes: `src/app/globals.css`
 
 ## High-level architecture
 ### 1) Content model is centralized
@@ -55,9 +67,19 @@ Run from the repository root.
 
 ### 5) Routing and metadata
 - Route-level metadata is defined in each page file (`src/app/**/page.tsx`) and uses `siteInfo.brandName` from `src/content/site.ts`.
-- `src/app/sitemap.ts` defines the sitemap routes and currently uses a hardcoded base URL (`https://example-contractor-site.vercel.app`); update this when deploying under a real domain.
+- `src/app/sitemap.ts` defines the sitemap routes.
 
-## Repo-specific implementation notes
+## Common edit workflows
+- Update brand/contact/navigation/copy/content lists: edit `src/content/site.ts` first.
+- Update reusable section/card/CTA/header/footer structure: edit `src/components/site.tsx`.
+- Update homepage hero text/layout/layers/actions: edit files under `src/components/hero/`.
+- Update shared visual language (colors, spacing primitives, button/card utility classes): edit `src/app/globals.css`.
+- Update contact form submission behavior: edit `src/components/contact/LeadForm.tsx`.
+
+## Repo-specific notes
 - Keep wording aligned with the existing positioning: the site presents an independent contractor/execution partner and avoids implying official government ownership.
 - Contact flow is WhatsApp-first: `src/components/contact/LeadForm.tsx` generates a prefilled WhatsApp message from form state and opens it in a new tab.
-- PR validation expectations are documented in `.github/pull_request_template.md` and currently require `npm run lint` and `npm run build`.
+
+## Pre-deployment checklist
+- Replace placeholder business details in `src/content/site.ts`.
+- Update `baseUrl` in `src/app/sitemap.ts` to the real production domain.
